@@ -1,0 +1,519 @@
+/* =====================
+   CSS VARIABLES
+===================== */
+:root {
+    --blue: #1a6fd4;
+    --blue-dark: #0e4fa0;
+    --blue-light: #eaf2ff;
+    --text: #111827;
+    --text-muted: #6b7280;
+    --bg: #f0f4fa;
+    --card: #ffffff;
+    --border: #e2eaf5;
+    --header-h: 68px;
+    --radius: 18px;
+    --shadow: 0 4px 24px rgba(26,111,212,0.10);
+}
+
+/* =====================
+   RESET & BASE
+===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    padding-top: var(--header-h);
+    line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+
+/* =====================
+   HEADER
+===================== */
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 clamp(20px, 5vw, 60px);
+    z-index: 1000;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+/* =====================
+   LOGO (gambar bulat + ring biru)
+===================== */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 0 4px var(--blue-light), 0 0 0 6px var(--blue);
+    display: block;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px var(--blue-light), 0 0 0 7px var(--blue);
+}
+
+/* =====================
+   NAV
+===================== */
+nav {
+    display: flex;
+    gap: clamp(12px, 2vw, 28px);
+    align-items: center;
+}
+
+nav a {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.2vw, 13px);
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+nav a:hover { color: var(--blue); }
+
+/* Hamburger (mobile) */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+}
+
+.burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav overlay */
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 999;
+    padding: 8px 0;
+}
+
+.nav-mobile.open { display: flex; }
+
+.nav-mobile a {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px clamp(20px, 5vw, 40px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-mobile a:last-child { border-bottom: none; }
+.nav-mobile a:hover { background: var(--blue-light); color: var(--blue); }
+
+/* =====================
+   HERO SECTION
+===================== */
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(30px, 5vw, 70px);
+    padding: clamp(40px, 7vw, 80px) clamp(20px, 5vw, 60px);
+    max-width: 1100px;
+    margin: 0 auto 40px auto;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 560px;
+    background: var(--card);
+    padding: clamp(24px, 4vw, 44px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.hero-tag {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+.hero-text h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 4vw, 34px);
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.hero-text h1 em {
+    font-style: normal;
+    color: var(--blue);
+}
+
+.hero-text p {
+    color: var(--text-muted);
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.8;
+}
+
+.hero-photo {
+    width: clamp(180px, 25vw, 260px);
+    height: clamp(180px, 25vw, 260px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    box-shadow: 0 8px 40px rgba(26,111,212,0.30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* =====================
+   SKILLS SECTION
+===================== */
+.skills-section {
+    background: var(--card);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: clamp(32px, 5vw, 60px) clamp(20px, 4vw, 50px);
+    margin: 0 auto 50px auto;
+    max-width: 1100px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: clamp(28px, 4vw, 50px);
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: clamp(13px, 1.4vw, 15px);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(16px, 2.5vw, 28px);
+}
+
+/* =====================
+   SKILL CARD
+===================== */
+.card {
+    background: #f8faff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(26,111,212,0.16);
+}
+
+/* Gambar diperbesar, kotak warna dihapus */
+.card-img {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.card:hover .card-img img {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: clamp(16px, 2.5vw, 22px);
+    flex: 1;
+}
+
+.card-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--blue);
+    margin-bottom: 8px;
+}
+
+.card-body p {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+/* =====================
+   CONTACT SECTION
+===================== */
+.contact-section {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    padding: 0 clamp(16px, 4vw, 30px);
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.contact-section .sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 40px);
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.wa-number {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wa-number .wa-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.wa-number .info-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.wa-number .info-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.5px;
+}
+
+/* Tombol WhatsApp */
+.btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25d366, #1da851);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 100px;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.35);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    width: 100%;
+    max-width: 280px;
+}
+
+.btn-wa:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+    filter: brightness(1.05);
+}
+
+.btn-wa:active { transform: translateY(0); }
+
+.btn-wa svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    flex-shrink: 0;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+    background: #111827;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 22px 20px;
+    font-size: 13px;
+    margin-top: 60px;
+}
+
+footer span { color: var(--blue); }
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 28px;
+        padding-top: 40px;
+    }
+    .hero-text { max-width: 100%; }
+    .hero-tag { margin: 0 auto 16px auto; }
+}
+
+@media (max-width: 640px) {
+    nav { display: none; }
+    .burger { display: flex; }
+
+    .hero-photo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .cards-grid { grid-template-columns: 1fr; }
+
+    .card-img { height: 200px; }
+
+    .contact-card { max-width: 100%; }
+
+    .skills-section { border-radius: 16px; }
+}
+
+@media (max-width: 380px) {
+    header { padding: 0 16px; }
+    .hero { padding: 30px 16px; }
+    .hero-photo { width: 140px; height: 140px; }
+}
+
+@media (min-width: 1200px) {
+    .hero, .skills-section { max-width: 1160px; }
+}
+
+/* =====================
+   SCROLL FADE-IN
+===================== */
+.fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
